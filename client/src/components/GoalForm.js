@@ -31,8 +31,6 @@ function GoalForm({ addGoal }) {
     }
   };
   
-
-
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <input
