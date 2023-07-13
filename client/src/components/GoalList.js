@@ -18,16 +18,45 @@ function GoalList() {
     fetchData();
   }, []);
 
+  const highPriorityGoals = goals.filter((goal) => goal.priority === 'alta');
+  const mediumPriorityGoals = goals.filter((goal) => goal.priority === 'media');
+  const lowPriorityGoals = goals.filter((goal) => goal.priority === 'baja');
+
   return (
-    <ul className="goal-list">
-      {goals.map((goal) => (
-        <li key={goal.id}>
-          <h3>{goal.title}</h3>
-          <p>{goal.description}</p>
-          <p>Fecha límite: {goal.deadline}</p>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h2>Metas de Prioridad Alta</h2>
+      <ul className="goal-list">
+        {highPriorityGoals.map((goal) => (
+          <li key={goal.id}>
+            <h3>{goal.title}</h3>
+            <p>{goal.description}</p>
+            <p>Fecha límite: {goal.deadline}</p>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Metas de Prioridad Media</h2>
+      <ul className="goal-list">
+        {mediumPriorityGoals.map((goal) => (
+          <li key={goal.id}>
+            <h3>{goal.title}</h3>
+            <p>{goal.description}</p>
+            <p>Fecha límite: {goal.deadline}</p>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Metas de Prioridad Baja</h2>
+      <ul className="goal-list">
+        {lowPriorityGoals.map((goal) => (
+          <li key={goal.id}>
+            <h3>{goal.title}</h3>
+            <p>{goal.description}</p>
+            <p>Fecha límite: {goal.deadline}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
