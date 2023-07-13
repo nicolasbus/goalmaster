@@ -15,7 +15,8 @@ function GoalForm({ addGoal }) {
         title,
         description,
         deadline,
-        priority
+        priority,
+        completed: false
       };
       try {
         const response = await axios.post('http://localhost:3000/api/goals', newGoal);
