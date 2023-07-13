@@ -95,3 +95,31 @@ exports.markGoalAsCompleted = async (req, res) => {
     res.status(500).json({ error: 'Error al marcar la meta como completada' });
   }
 };
+
+exports.editGoal = async (req, res) => {
+  const { id } = req.params;
+  const { title, description, deadline, priority } = req.body;
+
+  const params = {
+    TableName: config.dynamoDBTableName,
+    Key: {
+      id: { S: id },
+    },
+    UpdateExpression: 'SET title = :title, description = :description, deadline = :deadline, priority = :priority',
+    ExpressionAttributeValues: {
+      ':title': { S: title },
+      ':description': { S: description },
+      ':deadline': { S: deadline },
+      ':priority': { S: priority },
+    },
+  };
+
+  try {
+    await client.send(new UpdateItemCommand(params));
+    console.log('Meta actualizada correctamente');
+    res.status(200).json({ message: 'Meta actualizada correctamente' });
+  } catch (error) {
+    console.error('Error al actualizar la meta:', error);
+    res.status(500).json({ error: 'Error al actualizar la meta' });
+  }
+};

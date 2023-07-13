@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import GoalEditForm from './GoalEditForm';
 import '../styles/GoalList.css';
+
+
 
 function GoalList() {
   const [goals, setGoals] = useState([]);
+  const [editingGoal, setEditingGoal] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -48,6 +52,25 @@ const markGoalAsCompleted = async (id) => {
   }
 };
 
+const editGoal = (goal) => {
+  setEditingGoal(goal);
+};
+
+const updateGoal = async (updatedGoal) => {
+  try {
+    await axios.put(`http://localhost:3000/api/goals/${updatedGoal.id}`, updatedGoal);
+    console.log('Meta actualizada:', updatedGoal);
+    fetchData();
+    setEditingGoal(null);
+  } catch (error) {
+    console.error('Error al actualizar la meta:', error);
+  }
+};
+
+const cancelEdit = () => {
+  setEditingGoal(null);
+};
+
   return (
     <div>
       <h2>Metas de Prioridad Alta</h2>
@@ -57,13 +80,11 @@ const markGoalAsCompleted = async (id) => {
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
             <p>Fecha límite: {goal.deadline}</p>
+            <button onClick={() => editGoal(goal)}>Editar</button>
             <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
-            
-
             {!goal.completed && (
               <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
             )}
-            
 
           </li>
         ))}
@@ -76,6 +97,7 @@ const markGoalAsCompleted = async (id) => {
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
             <p>Fecha límite: {goal.deadline}</p>
+            <button onClick={() => editGoal(goal)}>Editar</button>
             <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
             {!goal.completed && (
               <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
@@ -91,6 +113,7 @@ const markGoalAsCompleted = async (id) => {
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
             <p>Fecha límite: {goal.deadline}</p>
+            <button onClick={() => editGoal(goal)}>Editar</button>
             <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
             {!goal.completed && (
               <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
@@ -98,6 +121,14 @@ const markGoalAsCompleted = async (id) => {
           </li>
         ))}
       </ul>
+
+      {editingGoal && (
+        <div className="popup">
+          <div className="popup-content">
+            <GoalEditForm goal={editingGoal} updateGoal={updateGoal} cancelEdit={cancelEdit} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

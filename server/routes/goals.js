@@ -11,6 +11,7 @@ router.delete('/goals/:id', goalController.deleteGoal);
 
 router.put('/goals/:id/completed', goalController.markGoalAsCompleted);
 
+router.put('/goals/:id', goalController.editGoal);
 
 
 module.exports = router;
