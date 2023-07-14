@@ -111,7 +111,7 @@ const cancelEdit = () => {
       <h2>Metas de Prioridad Media</h2>
       <ul className="goal-list">
         {mediumPriorityGoals.map((goal) => (
-          <li key={goal.id}>
+          <li key={goal.id} className={goal.completed ? 'completed-goal' : ''}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
             <p>Fecha límite: {formatDate(goal.deadline)}</p>
@@ -129,7 +129,7 @@ const cancelEdit = () => {
       <h2>Metas de Prioridad Baja</h2>
       <ul className="goal-list">
         {lowPriorityGoals.map((goal) => (
-          <li key={goal.id}>
+          <li key={goal.id} className={goal.completed ? 'completed-goal' : ''}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
             <p>Fecha límite: {formatDate(goal.deadline)}</p>
