@@ -43,3 +43,7 @@
     background-color: #fff;
     padding: 20px;
   }
+  
+  .completed-goal {
+    background-color: lightgreen !important;
+  }

@@ -41,6 +41,7 @@ exports.getGoals = async (req, res) => {
         description: item.description && item.description.S ? item.description.S : '',
         deadline: item.deadline && item.deadline.S ? item.deadline.S : '',
         priority: item.priority && item.priority.S ? item.priority.S : '',
+        completed: item.completed && item.completed.BOOL ? item.completed.BOOL : false,
       };
     });
 

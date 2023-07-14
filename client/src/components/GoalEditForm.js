@@ -6,7 +6,12 @@ function GoalEditForm({ goal, updateGoal, cancelEdit }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUpdatedGoal((prevGoal) => ({ ...prevGoal, [name]: value }));
+    if (name === 'deadline') {
+      const dateOnly = value.split('T')[0];
+      setUpdatedGoal((prevGoal) => ({ ...prevGoal, [name]: dateOnly }));
+    } else {
+      setUpdatedGoal((prevGoal) => ({ ...prevGoal, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {

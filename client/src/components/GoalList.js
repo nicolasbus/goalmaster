@@ -12,7 +12,17 @@ function GoalList() {
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/goals');
-      setGoals(response.data);
+      const goalsData = response.data;
+      const sortedGoals = goalsData.sort((a, b) => {
+        const dateA = new Date(a.deadline);
+        const dateB = new Date(b.deadline);
+        return dateA - dateB;
+      });
+      console.log(response.data)
+      setGoals(sortedGoals);
+
+
+
     } catch (error) {
       console.error('Error al obtener las metas:', error);
     }
@@ -22,6 +32,13 @@ function GoalList() {
     fetchData();
   }, []);
 
+  const formatDate = (date) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const dateObject = new Date(date);
+    dateObject.setDate(dateObject.getDate() + 1); 
+    return dateObject.toLocaleDateString(undefined, options);
+  };
+  
   const highPriorityGoals = goals.filter((goal) => goal.priority === 'alta');
   const mediumPriorityGoals = goals.filter((goal) => goal.priority === 'media');
   const lowPriorityGoals = goals.filter((goal) => goal.priority === 'baja');
@@ -76,16 +93,17 @@ const cancelEdit = () => {
       <h2>Metas de Prioridad Alta</h2>
       <ul className="goal-list">
         {highPriorityGoals.map((goal) => (
-          <li key={goal.id}>
+          <li key={goal.id} className={goal.completed ? 'completed-goal' : ''}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
-            <p>Fecha límite: {goal.deadline}</p>
+            <p>Fecha límite: {formatDate(goal.deadline)}</p>
             <button onClick={() => editGoal(goal)}>Editar</button>
             <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
-            {!goal.completed && (
-              <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
-            )}
-
+          {!goal.completed ? (
+            <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
+          ) : (
+            <p>Meta completada!</p>
+          )}
           </li>
         ))}
       </ul>
@@ -96,12 +114,14 @@ const cancelEdit = () => {
           <li key={goal.id}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
-            <p>Fecha límite: {goal.deadline}</p>
+            <p>Fecha límite: {formatDate(goal.deadline)}</p>
             <button onClick={() => editGoal(goal)}>Editar</button>
             <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
-            {!goal.completed && (
-              <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
-            )}
+          {!goal.completed ? (
+            <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
+          ) : (
+            <p>Meta completada!</p>
+          )}
           </li>
         ))}
       </ul>
@@ -112,12 +132,14 @@ const cancelEdit = () => {
           <li key={goal.id}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
-            <p>Fecha límite: {goal.deadline}</p>
+            <p>Fecha límite: {formatDate(goal.deadline)}</p>
             <button onClick={() => editGoal(goal)}>Editar</button>
             <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
-            {!goal.completed && (
-              <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
-            )}
+          {!goal.completed ? (
+            <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
+          ) : (
+            <p>Meta completada!</p>
+          )}
           </li>
         ))}
       </ul>
