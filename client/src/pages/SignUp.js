@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom'; 
+import '../styles/SignUp.css'
+
 
 const SignUp = () => {
   const [password, setPassword] = useState('');
@@ -25,24 +27,36 @@ const SignUp = () => {
     }
   };
 
-  return (
+return (
+  <div className="signup-container">
+    <h2>Regístrate</h2>
     <form onSubmit={handleSubmit}>
-     <input
-        type="email"
-        placeholder="Correo electrónico"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Registrarse</button>
-
+      <div className="form-group">
+        <label>Correo electrónico:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Ingresa tu correo electrónico"
+        />
+      </div>
+      <div className="form-group">
+        <label>Contraseña:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Ingresa tu contraseña"
+        />
+      </div>
+      <button className="signup-button" type="submit">Registrarse</button>
     </form>
-  );
+    <p className="signup-link">
+      ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+    </p>
+  </div>
+);
 };
+
 
 export default SignUp;

@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/Login.css'
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +26,11 @@ const Login = () => {
         email,
         password,
       });
+ 
+        localStorage.setItem('token', response.data.accessToken);
+        setToken(response.data.accessToken);
+        const storedToken = localStorage.getItem('token');
+        console.log('Token almacenado:', storedToken);
 
       console.log('Inicio de sesión exitoso:', response.data);
     } catch (error) {
@@ -21,12 +38,15 @@ const Login = () => {
       setErrorMessage('Error al iniciar sesión. Verifica tus credenciales.');
     }
   };
+  if (token) {
+    return <Navigate to="/home" />;
+  }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+      <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -35,7 +55,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Contraseña:</label>
           <input
             type="password"
@@ -47,6 +67,9 @@ const Login = () => {
         <button type="submit">Iniciar sesión</button>
       </form>
       {errorMessage && <p>{errorMessage}</p>}
+      <p className="signup-link">
+      ¿Aún no tienes cuenta? <Link to="/signup">Regístrate</Link>
+      </p>
     </div>
   );
 };
