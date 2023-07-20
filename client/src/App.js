@@ -5,11 +5,20 @@ import SignUp from './pages/SignUp';
 import { BrowserRouter, Routes, Route,Link } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
+import GoalForm from './components/GoalForm';
+import React, { useState, useEffect } from 'react';
+import UserGoals from './components/UserGoals';
 
 function App() {
 
-  const storedToken = localStorage.getItem('token');
-  console.log('Token almacenado:', storedToken);
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
@@ -20,6 +29,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/autenticacion" element={<ConfirmCode />} />
+        <Route path="/goalform" element={token ? <GoalForm token={token} /> : <p>Loading...</p>}/>
+        <Route path="/usergoals" element={token ? <UserGoals token={token} /> : <p>Loading...</p>}/>
       </Routes>
       </div>
     </BrowserRouter>

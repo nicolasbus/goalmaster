@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/GoalForm.css';
 
-function GoalForm({ addGoal }) {
+function GoalForm({ addGoal, token }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
   const [priority, setPriority] = useState('');
+
+  console.log('Token recibido en GoalForm:', token); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,10 +18,14 @@ function GoalForm({ addGoal }) {
         description,
         deadline,
         priority,
-        completed: false
+        completed: false,
       };
+  
       try {
-        const response = await axios.post('http://localhost:3000/api/goals', newGoal);
+        const response = await axios.post('http://localhost:3000/api/goals', newGoal, {
+          headers: { Authorization: `Bearer ${token}` }, 
+        });
+  
         console.log(response.data);
   
         setTitle('');
@@ -31,6 +37,7 @@ function GoalForm({ addGoal }) {
       }
     }
   };
+  
   
   return (
     <form className="form-container" onSubmit={handleSubmit}>
