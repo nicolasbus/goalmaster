@@ -85,76 +85,75 @@ exports.getGoals = async (req, res) => {
   }
 };
 
-//REVISAR
-// exports.deleteGoal = async (req, res) => {
-//   const { id } = req.params;
+exports.deleteGoal = async (req, res) => {
+  const { id } = req.params;
 
-//   const params = {
-//     TableName: config.dynamoDBTableName,
-//     Key: {
-//       id: { S: id },
-//     },
-//   };
+  const params = {
+    TableName: config.dynamoDBTableName,
+    Key: {
+      id: { S: id },
+    },
+  };
 
-//   try {
-//     await client.send(new DeleteItemCommand(params));
-//     console.log('Meta eliminada:', id);
-//     res.status(200).json({ message: 'Meta eliminada correctamente' });
-//   } catch (error) {
-//     console.error('Error al eliminar la meta:', error);
-//     res.status(500).json({ error: 'Error al eliminar la meta' });
-//   }
-// };
+  try {
+    await client.send(new DeleteItemCommand(params));
+    console.log('Meta eliminada:', id);
+    res.status(200).json({ message: 'Meta eliminada correctamente' });
+  } catch (error) {
+    console.error('Error al eliminar la meta:', error);
+    res.status(500).json({ error: 'Error al eliminar la meta' });
+  }
+};
 
-// exports.markGoalAsCompleted = async (req, res) => {
-//   const { id } = req.params;
-//   const { completed } = req.body;
+exports.markGoalAsCompleted = async (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
 
-//   const params = {
-//     TableName: config.dynamoDBTableName,
-//     Key: {
-//       id: { S: id },
-//     },
-//     UpdateExpression: 'SET completed = :completed',
-//     ExpressionAttributeValues: {
-//       ':completed': { BOOL: completed },
-//     },
-//   };
+  const params = {
+    TableName: config.dynamoDBTableName,
+    Key: {
+      id: { S: id },
+    },
+    UpdateExpression: 'SET completed = :completed',
+    ExpressionAttributeValues: {
+      ':completed': { BOOL: completed },
+    },
+  };
 
-//   try {
-//     await client.send(new UpdateItemCommand(params));
-//     console.log('Meta marcada como completada:', id);
-//     res.status(200).json({ message: 'Meta marcada como completada' });
-//   } catch (error) {
-//     console.error('Error al marcar la meta como completada:', error);
-//     res.status(500).json({ error: 'Error al marcar la meta como completada' });
-//   }
-// };
+  try {
+    await client.send(new UpdateItemCommand(params));
+    console.log('Meta marcada como completada:', id);
+    res.status(200).json({ message: 'Meta marcada como completada' });
+  } catch (error) {
+    console.error('Error al marcar la meta como completada:', error);
+    res.status(500).json({ error: 'Error al marcar la meta como completada' });
+  }
+};
 
-// exports.editGoal = async (req, res) => {
-//   const { id } = req.params;
-//   const { title, description, deadline, priority } = req.body;
+exports.editGoal = async (req, res) => {
+  const { id } = req.params;
+  const { title, description, deadline, priority } = req.body;
 
-//   const params = {
-//     TableName: config.dynamoDBTableName,
-//     Key: {
-//       id: { S: id },
-//     },
-//     UpdateExpression: 'SET title = :title, description = :description, deadline = :deadline, priority = :priority',
-//     ExpressionAttributeValues: {
-//       ':title': { S: title },
-//       ':description': { S: description },
-//       ':deadline': { S: deadline },
-//       ':priority': { S: priority },
-//     },
-//   };
+  const params = {
+    TableName: config.dynamoDBTableName,
+    Key: {
+      id: { S: id },
+    },
+    UpdateExpression: 'SET title = :title, description = :description, deadline = :deadline, priority = :priority',
+    ExpressionAttributeValues: {
+      ':title': { S: title },
+      ':description': { S: description },
+      ':deadline': { S: deadline },
+      ':priority': { S: priority },
+    },
+  };
 
-//   try {
-//     await client.send(new UpdateItemCommand(params));
-//     console.log('Meta actualizada correctamente');
-//     res.status(200).json({ message: 'Meta actualizada correctamente' });
-//   } catch (error) {
-//     console.error('Error al actualizar la meta:', error);
-//     res.status(500).json({ error: 'Error al actualizar la meta' });
-//   }
-// };
+  try {
+    await client.send(new UpdateItemCommand(params));
+    console.log('Meta actualizada correctamente');
+    res.status(200).json({ message: 'Meta actualizada correctamente' });
+  } catch (error) {
+    console.error('Error al actualizar la meta:', error);
+    res.status(500).json({ error: 'Error al actualizar la meta' });
+  }
+};

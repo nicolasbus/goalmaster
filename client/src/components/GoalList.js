@@ -39,13 +39,13 @@
 //     return dateObject.toLocaleDateString(undefined, options);
 //   };
   
-//   const highPriorityGoals = goals.filter((goal) => goal.priority === 'alta');
-//   const mediumPriorityGoals = goals.filter((goal) => goal.priority === 'media');
-//   const lowPriorityGoals = goals.filter((goal) => goal.priority === 'baja');
+// //   const highPriorityGoals = goals.filter((goal) => goal.priority === 'alta');
+// //   const mediumPriorityGoals = goals.filter((goal) => goal.priority === 'media');
+// //   const lowPriorityGoals = goals.filter((goal) => goal.priority === 'baja');
 
 //   const deleteGoal = async (id) => {
 //     try {
-//       await axios.delete(`http://localhost:3000/api/goals/${id}`);
+//     //   await axios.delete(`http://localhost:3000/api/goals/${id}`);
 //       console.log('Meta eliminada:', id);
 //       fetchData(); 
 //     } catch (error) {
