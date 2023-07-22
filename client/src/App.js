@@ -26,13 +26,13 @@ function App() {
     <div>
       <Navbar/>
       <Routes>
-        <Route path="/home" element={<ProtectedRoute element={Home} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/autenticacion" element={<ConfirmCode />} />
-        <Route path="/goalform" element={token ? <GoalForm token={token} /> : <p>Loading...</p>}/>
-        <Route path="/usergoals" element={token ? <UserGoals token={token} /> : <p>Loading...</p>}/>
-        {/* <Route path="/goallist" element={token ? <GoalList token={token} /> : <p>Loading...</p>}/> */}
+        <Route path="/goalform" element={token ? <GoalForm token={token} /> : <p>Cargando...</p>}/>
+        <Route path="/usergoals" element={token ? <UserGoals token={token} /> : <p>Cargando...</p>}/>
+        {/* <Route path="/home" element={<ProtectedRoute element={Home} token={token} />} /> */}
 
       </Routes>
       </div>

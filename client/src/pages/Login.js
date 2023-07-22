@@ -39,7 +39,7 @@ const Login = () => {
     }
   };
   if (token) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/" />;
   }
 
   return (
@@ -68,7 +68,7 @@ const Login = () => {
       </form>
       {errorMessage && <p>{errorMessage}</p>}
       <p className="signup-link">
-      ¿Aún no tienes cuenta? <Link to="/signup">Regístrate</Link>
+      ¿Aún no tienes cuenta? <Link to="/signup" style={{ textDecoration: 'none', color: 'gold' }}>Regístrate</Link>
       </p>
     </div>
   );

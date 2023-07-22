@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../styles/ConfirmCode.css';
 
 const ConfirmCode = () => {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ const ConfirmCode = () => {
   };
 
   return (
-    <div>
+    <div className="confirm-code-container">
       <h2>Confirmar Código</h2>
       <form onSubmit={handleConfirmCode}>
         <div>
@@ -51,6 +52,7 @@ const ConfirmCode = () => {
       {message && <p>{message}</p>}
       {error && <p>Error: {error}</p>}
     </div>
+    
   );
 };
 

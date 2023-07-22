@@ -1,57 +1,103 @@
+/* Estilos para el formulario de inicio de sesión */
+
 .login-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
+  max-width: 500px; /* Aumentamos el ancho máximo para hacerlo más grande */
+  margin: auto;
+  padding: 40px; /* Aumentamos el espacio interno para dar más espacio al contenido */
+  background-color: #333; /* Cambiamos el fondo a un color oscuro */
+  border-radius: 10px; /* Aumentamos el radio de las esquinas para que se vea más suave */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregamos sombra para dar profundidad */
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: gold;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ffd700;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: none;
+  color: white; /* Color dorado para el enlace de registro */
+}
+
+/* Estilos para el enlace de registro sin visitar o visitado (mismo color) */
+.signup-link:link,
+.signup-link:visited {
+  color: gold;
+}
+
+/* Estilos para el enlace de registro cuando el cursor está sobre él */
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+/* Estilos para la página responsive */
+@media screen and (max-width: 768px) {
+  .login-container {
+    max-width: 90%;
   }
   
   .login-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
+    font-size: 24px;
   }
   
   .form-group input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    font-size: 14px;
+    padding: 8px;
   }
   
   button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 14px;
+    padding: 8px;
   }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .signup-link {
-    text-align: center;
-    margin-top: 10px;
-  }
-  
+}

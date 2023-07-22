@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import GoalEditForm from './GoalEditForm';
-import '../styles/GoalList.css';
+import '../styles/UserGoals.css';
 
 const UserGoals = ({ token }) => {
   const [goals, setGoals] = useState([]);
@@ -89,7 +89,8 @@ const deleteGoal = async (id) => {
   };
 
   return (
-    <div>
+    <div className="goal-container">
+      <div className="goal-group">
       <h2>Metas de Prioridad Alta</h2>
       <ul className="goal-list">
         {highPriorityGoals.map((goal) => (
@@ -107,7 +108,8 @@ const deleteGoal = async (id) => {
           </li>
         ))}
       </ul>
-
+      </div>
+      <div className="goal-group">
       <h2>Metas de Prioridad Media</h2>
       <ul className="goal-list">
         {mediumPriorityGoals.map((goal) => (
@@ -125,7 +127,8 @@ const deleteGoal = async (id) => {
           </li>
         ))}
       </ul>
-
+      </div>
+      <div className="goal-group">
       <h2>Metas de Prioridad Baja</h2>
       <ul className="goal-list">
         {lowPriorityGoals.map((goal) => (
@@ -143,7 +146,7 @@ const deleteGoal = async (id) => {
           </li>
         ))}
       </ul>
-
+      </div>
 
 
       {editingGoal && (
@@ -153,15 +156,6 @@ const deleteGoal = async (id) => {
           </div>
         </div>
       )}
-
-
-
-
-
-
-
-
-
 
     </div>
   );

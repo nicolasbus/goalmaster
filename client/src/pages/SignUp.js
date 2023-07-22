@@ -52,7 +52,7 @@ return (
       <button className="signup-button" type="submit">Registrarse</button>
     </form>
     <p className="signup-link">
-      ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+      ¿Ya tienes una cuenta? <Link to="/login" style={{ textDecoration: 'none', color: 'gold' }}>Inicia sesión</Link>
     </p>
   </div>
 );
