@@ -1,16 +1,14 @@
-/* Estilos para el formulario de inicio de sesión */
-
 .login-container {
-  max-width: 500px; /* Aumentamos el ancho máximo para hacerlo más grande */
+  max-width: 500px; 
   margin: auto;
-  padding: 40px; /* Aumentamos el espacio interno para dar más espacio al contenido */
-  background-color: #333; /* Cambiamos el fondo a un color oscuro */
-  border-radius: 10px; /* Aumentamos el radio de las esquinas para que se vea más suave */
+  padding: 40px; 
+  background-color: #333; 
+  border-radius: 10px; 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregamos sombra para dar profundidad */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login-container h2 {
@@ -63,16 +61,14 @@ button:hover {
   text-align: center;
   margin-top: 10px;
   text-decoration: none;
-  color: white; /* Color dorado para el enlace de registro */
+  color: white; 
 }
 
-/* Estilos para el enlace de registro sin visitar o visitado (mismo color) */
 .signup-link:link,
 .signup-link:visited {
   color: gold;
 }
 
-/* Estilos para el enlace de registro cuando el cursor está sobre él */
 .signup-link:hover {
   text-decoration: underline;
 }
@@ -81,7 +77,6 @@ button:hover {
 
 
 
-/* Estilos para la página responsive */
 @media screen and (max-width: 768px) {
   .login-container {
     max-width: 90%;

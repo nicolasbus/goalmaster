@@ -1,7 +1,14 @@
 import React from 'react';
 import '../styles/GoalItem.css';
 
-const GoalItem = ({ goal, markAsCompleted, deleteGoal }) => {
+const formatDate = (date) => {
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const dateObject = new Date(date);
+  dateObject.setDate(dateObject.getDate() + 1); 
+  return dateObject.toLocaleDateString(undefined, options);
+};
+
+const GoalItem = ({ goal, markAsCompleted, deleteGoal, editGoal }) => {
   const { title, description, deadline, completed } = goal;
 
   return (
@@ -13,11 +20,16 @@ const GoalItem = ({ goal, markAsCompleted, deleteGoal }) => {
       <div className="goal-details">
         <h3>{title}</h3>
         <p>{description}</p>
-        <p>Fecha límite: {deadline}</p>
+        <p>Fecha límite: {formatDate(deadline)}</p>
       </div>
-      <button className="delete-button" onClick={() => deleteGoal(goal.id)}>
-        &#10006;
-      </button>
+            <div className="buttons-container">
+        <button className="edit-button" onClick={() => editGoal(goal)}>
+          Editar
+        </button>
+        <button className="delete-button" onClick={() => deleteGoal(goal.id)}>
+          &#10006;
+        </button>
+      </div>
     </li>
   );
 };

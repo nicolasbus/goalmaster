@@ -157,3 +157,4 @@ exports.editGoal = async (req, res) => {
     res.status(500).json({ error: 'Error al actualizar la meta' });
   }
 };
+

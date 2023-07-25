@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import GoalEditForm from './GoalEditForm';
+import GoalItem from './GoalItem';
 import '../styles/UserGoals.css';
+// import '../styles/Dashboard.css'
+
 
 const UserGoals = ({ token }) => {
   const [goals, setGoals] = useState([]);
@@ -72,13 +75,13 @@ const deleteGoal = async (id) => {
   };
   
 
-  const markGoalAsCompleted = async (id) => {
+  const markGoalAsCompleted = async (id, newCompletedValue) => {
     try {
-      await axios.put(`http://localhost:3000/api/goals/${id}/completed`, { completed: true });
+      await axios.put(`http://localhost:3000/api/goals/${id}/completed`, { completed: newCompletedValue });
       console.log('Meta marcada como completada:', id);
       const updatedGoals = goals.map((goal) => {
         if (goal.id === id) {
-          return { ...goal, completed: true };
+          return { ...goal, completed: newCompletedValue };
         }
         return goal;
       });
@@ -87,77 +90,57 @@ const deleteGoal = async (id) => {
       console.error('Error al marcar la meta como completada:', error);
     }
   };
-
   return (
-    <div className="goal-container">
-      <div className="goal-group">
+    <div className="dashboard-container"> 
+    <div className="goal-group">
       <h2>Metas de Prioridad Alta</h2>
       <ul className="goal-list">
         {highPriorityGoals.map((goal) => (
-          <li key={goal.id} className={goal.completed ? 'completed-goal' : ''}>
-            <h3>{goal.title}</h3>
-            <p>{goal.description}</p>
-            <p>Fecha límite: {formatDate(goal.deadline)}</p>
-            <button onClick={() => editGoal(goal)}>Editar</button>
-            <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
-          {!goal.completed ? (
-            <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
-          ) : (
-            <p>Meta completada!</p>
-          )}
-          </li>
+          <GoalItem
+            key={goal.id}
+            goal={goal}
+            markAsCompleted={markGoalAsCompleted}
+            deleteGoal={deleteGoal}
+            editGoal={editGoal} 
+          /> 
         ))}
       </ul>
-      </div>
-      <div className="goal-group">
+    </div>
+    <div className="goal-group">
       <h2>Metas de Prioridad Media</h2>
       <ul className="goal-list">
         {mediumPriorityGoals.map((goal) => (
-          <li key={goal.id} className={goal.completed ? 'completed-goal' : ''}>
-            <h3>{goal.title}</h3>
-            <p>{goal.description}</p>
-            <p>Fecha límite: {formatDate(goal.deadline)}</p>
-            <button onClick={() => editGoal(goal)}>Editar</button>
-            <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
-          {!goal.completed ? (
-            <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
-          ) : (
-            <p>Meta completada!</p>
-          )}
-          </li>
+          <GoalItem
+            key={goal.id}
+            goal={goal}
+            markAsCompleted={markGoalAsCompleted}
+            deleteGoal={deleteGoal}
+          />
         ))}
       </ul>
-      </div>
-      <div className="goal-group">
+    </div>
+    <div className="goal-group">
       <h2>Metas de Prioridad Baja</h2>
       <ul className="goal-list">
         {lowPriorityGoals.map((goal) => (
-          <li key={goal.id} className={goal.completed ? 'completed-goal' : ''}>
-            <h3>{goal.title}</h3>
-            <p>{goal.description}</p>
-            <p>Fecha límite: {formatDate(goal.deadline)}</p>
-            <button onClick={() => editGoal(goal)}>Editar</button>
-            <button onClick={() => deleteGoal(goal.id)}>Eliminar</button>
-          {!goal.completed ? (
-            <button onClick={() => markGoalAsCompleted(goal.id)}>Completada</button>
-          ) : (
-            <p>Meta completada!</p>
-          )}
-          </li>
+          <GoalItem
+            key={goal.id}
+            goal={goal}
+            markAsCompleted={markGoalAsCompleted}
+            deleteGoal={deleteGoal}
+          />
         ))}
       </ul>
-      </div>
-
-
-      {editingGoal && (
-        <div className="popup">
-          <div className="popup-content">
-            <GoalEditForm goal={editingGoal} updateGoal={updateGoal} cancelEdit={cancelEdit} />
-          </div>
-        </div>
-      )}
-
     </div>
+       {editingGoal && (
+         <div className="popup">
+           <div className="popup-content">
+             <GoalEditForm goal={editingGoal} updateGoal={updateGoal} cancelEdit={cancelEdit} />
+           </div>
+         </div>
+       )}
+    </div>
+
   );
 };
 

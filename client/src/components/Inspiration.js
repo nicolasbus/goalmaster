@@ -1,13 +1,11 @@
 import React from 'react';
 
 const Inspiration = () => {
-  // Aquí puedes definir una lista de recursos, consejos o citas inspiradoras
   const resources = [
     'Consejo 1: Establece metas realistas y alcanzables.',
     'Consejo 2: Celebra tus pequeños logros en el camino hacia tus metas más grandes.',
     'Consejo 3: Mantén una actitud positiva y persevera incluso en los momentos difíciles.',
     'Cita inspiradora: "El éxito es la suma de pequeños esfuerzos repetidos día tras día." - Robert Collier',
-    // Agregar más recursos e inspiraciones según sea necesario
   ];
 
   return (

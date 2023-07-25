@@ -1,0 +1,82 @@
+.todo-list-container {
+  max-width: 500px;
+  margin: 80px auto 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.task-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.task-form input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.task-form button {
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.agenda {
+  margin-top: 20px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.description {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.complete-button,
+.delete-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.complete-button {
+  background-color: rgb(196, 196, 196);
+  color: white;
+}
+
+.complete-button.completed {
+  background-color: gold;
+}
+
+.delete-button {
+  background-color: transparent; 
+  color: inherit; 
+  margin: 0px 10px;
+}
+.delete-button.no-hover:hover {
+  background-color: transparent; 
+}
+.buttons {
+  display: flex;
+}

@@ -1,4 +1,4 @@
-.dashboard-container {
+/* .dashboard-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -22,7 +22,7 @@
   }
   
   .goal-item.completed {
-    background-color: #e6f4e6;
+    background-color: rgb(240, 216, 81);
   }
   
   .circle {
@@ -63,4 +63,4 @@
     margin-top: 0;
     margin-bottom: 10px;
   }
-  
+   */
