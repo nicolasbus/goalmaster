@@ -1,0 +1,25 @@
+/* Estilos para el marker de metas en el calendario */
+.calendar-container {
+    position: absolute;
+    top: 70px; /* Ajusta la distancia desde la parte superior según tus necesidades */
+    right: 20px; /* Ajusta la distancia desde la parte derecha según tus necesidades */
+  }
+  
+  .calendar-wrapper {
+    position: relative;
+    width: 300px; /* Ajusta el ancho del calendario según tus necesidades */
+    height: 300px; /* Ajusta la altura del calendario según tus necesidades */
+  }/* Estilos para el marker de metas en el calendario */
+/* Estilos para el marcador de la fecha actual en el calendario */
+.current-date-marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: red; /* Puedes cambiar el color según tus preferencias */
+    border-radius: 50%; /* Forma redondeada */
+  }
+  
+  
