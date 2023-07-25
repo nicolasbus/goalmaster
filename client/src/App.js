@@ -8,7 +8,6 @@ import Navbar from './components/Navbar';
 import GoalForm from './components/GoalForm';
 import React, { useState, useEffect } from 'react';
 import UserGoals from './components/UserGoals';
-import GoalList from './components/GoalList';
 
 function App() {
 
@@ -24,10 +23,10 @@ function App() {
   return (
     <BrowserRouter>
     <div>
-      <Navbar/>
+      <Navbar token={token}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setToken={setToken}/>}  />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/autenticacion" element={<ConfirmCode />} />
         <Route path="/goalform" element={token ? <GoalForm token={token} /> : <p>Cargando...</p>}/>

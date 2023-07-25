@@ -32,7 +32,9 @@ const Navbar = () => {
           </li>
         ) : (
           <li>
-            <Link to="/login">Login</Link>
+            <button>
+              <Link to="/login" style={{ color: 'black' }}>Login</Link>
+            </button>
           </li>
         )}
       </ul>

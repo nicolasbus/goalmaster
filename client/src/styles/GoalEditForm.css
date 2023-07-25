@@ -1,43 +1,44 @@
 .edit-form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 8px;
-  }
-  
-  .edit-form input,
-  .edit-form textarea {
-    width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2; 
+  border-radius: 8px;
+  color: black
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff; 
+  color: #444;
+}
+
+.edit-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #444;
+  color: #fff; 
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit-form button:hover {
+  background-color: #ffcc00; 
+}
+
+@media screen and (max-width: 480px) {
+  .edit-form {
+    max-width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #ffffff;
   }
-  
-  .edit-form button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #4285f4;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .edit-form button:hover {
-    background-color: #3367d6;
-  }
-  
-  @media screen and (max-width: 480px) {
-    .edit-form {
-      max-width: 100%;
-      padding: 10px;
-    }
-  }
-  
+}

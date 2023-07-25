@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Login.css'
 
 
-const Login = () => {
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [token, setToken] = useState('');
+  const navigate = useNavigate(); 
 
   useEffect(() => {
 
@@ -31,16 +31,17 @@ const Login = () => {
         setToken(response.data.accessToken);
         const storedToken = localStorage.getItem('token');
         console.log('Token almacenado:', storedToken);
-
       console.log('Inicio de sesión exitoso:', response.data);
+      navigate('/');
+
     } catch (error) {
       console.log('Error al iniciar sesión:', error.response.data.error);
       setErrorMessage('Error al iniciar sesión. Verifica tus credenciales.');
     }
   };
-  if (token) {
-    return <Navigate to="/" />;
-  }
+
+  
+
 
   return (
     <div className="login-container">
