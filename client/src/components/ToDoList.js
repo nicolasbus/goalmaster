@@ -65,6 +65,7 @@ const ToDoList = ({ token }) => {
 
   return (
     <div className="todo-list-container">
+    <div className="task-list">
       <div className="agenda">
         {tasks.map((task) => (
           <div className={`task ${task.completed ? 'completed' : ''}`} key={task.id}>
@@ -96,6 +97,7 @@ const ToDoList = ({ token }) => {
         </button>
       </form>
     </div>
+  </div>
   );
 };
 

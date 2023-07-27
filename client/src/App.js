@@ -9,7 +9,7 @@ import GoalForm from './components/GoalForm';
 import React, { useState, useEffect } from 'react';
 import UserGoals from './components/UserGoals';
 import Dashboard from './pages/Dashboard';
-import MyCalendar from './components/MyCalendar';
+import ToDoList from './components/ToDoList';
 function App() {
 
   const [token, setToken] = useState('');
@@ -38,6 +38,7 @@ function App() {
             element={token ? <Dashboard token={token} /> : <p>Cargando...</p>}
           />
                     {/* <Route path="/calendar" element={token ? <MyCalendar token={token} /> : <p>Cargando...</p>} /> */}
+                    <Route path="/agenda" element={token ? <ToDoList token={token} /> : <p>Cargando...</p>}/>
 
       </Routes>
       

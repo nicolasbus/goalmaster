@@ -48,8 +48,9 @@ exports.addToDo = async (req, res) => {
   
     const idToken = authorizationHeader.substring('Bearer '.length);
     const decodedToken = jwt.decode(idToken);
-    const userId = decodedToken.sub;
-  
+    // const userId = decodedToken.sub;
+    const userId = decodedToken && decodedToken.sub;
+
     const params = {
       TableName: config.dynamoDBTableName2,
       FilterExpression: '#userId = :userId',

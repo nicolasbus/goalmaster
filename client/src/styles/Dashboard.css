@@ -12,16 +12,20 @@
 
 .container-left .container-top {
   flex: 30; 
-  background-color: blue; 
+  /* background-color: blue;  */
   max-height: 30vh; 
 }
 
 .container-left .container-bottom {
   flex: 70; 
-  background-color: red;
   max-height: 70vh; 
-
 }
+
+.todolist-container{
+  position: relative;
+  bottom:10vh;
+}
+
 
 .container-right {
   flex: 1; 
@@ -31,7 +35,7 @@
 
 .container-right .container-top {
   flex: 50; 
-  background-color: green; 
+  /* background-color: green;  */
   max-height: 50vh; 
 
 }
@@ -42,8 +46,11 @@
   overflow-y: scroll;
   margin:0;
   padding:0;
+
 }
 .content {
   position:relative;
   bottom: 80px;
+  zoom: 70%; /* Aplicar zoom del 80% */
+
 }

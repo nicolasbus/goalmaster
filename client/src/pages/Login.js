@@ -32,7 +32,7 @@ const Login = ({ setToken }) => {
         const storedToken = localStorage.getItem('token');
         console.log('Token almacenado:', storedToken);
       console.log('Inicio de sesión exitoso:', response.data);
-      navigate('/');
+      navigate('/dashboard');
 
     } catch (error) {
       console.log('Error al iniciar sesión:', error.response.data.error);

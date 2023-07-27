@@ -9,8 +9,9 @@ const Dashboard = ({ token }) => {
     <div className="container-left">
       <div className="container-top"></div>
       <div className="container-bottom">
+        <div className="todolist-container">
           <ToDoList token={token} />
-
+          </div>
       </div>
     </div>
     <div className="container-right">
