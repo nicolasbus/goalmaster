@@ -37,7 +37,7 @@ function App() {
             path="/dashboard"
             element={token ? <Dashboard token={token} /> : <p>Cargando...</p>}
           />
-                    <Route path="/calendar" element={token ? <MyCalendar token={token} /> : <p>Cargando...</p>} />
+                    {/* <Route path="/calendar" element={token ? <MyCalendar token={token} /> : <p>Cargando...</p>} /> */}
 
       </Routes>
       

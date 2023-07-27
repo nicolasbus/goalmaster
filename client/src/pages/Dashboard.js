@@ -1,11 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ToDoList from '../components/ToDoList';
+import '../styles/Dashboard.css'
+import UserGoals from '../components/UserGoals';
 
 const Dashboard = ({ token }) => {
   return (
-    <div>
-      <ToDoList token={token} />
+    <div className="container-wrapper">
+    <div className="container-left">
+      <div className="container-top"></div>
+      <div className="container-bottom">
+          <ToDoList token={token} />
+
+      </div>
     </div>
+    <div className="container-right">
+      <div className="container-top">
+      </div>
+      <div className="container-bottom">
+      <div class="content">
+      <UserGoals token={token} />
+      </div>
+      </div>
+    </div>
+  </div>
   );
 };
 

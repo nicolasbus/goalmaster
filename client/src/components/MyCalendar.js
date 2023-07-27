@@ -70,7 +70,6 @@
 
 //   return (
 //     <div className="calendar-container">
-//       <h2>Calendario de Metas</h2>
 //       <div className="calendar-wrapper">
 //         <CustomCalendar value={today} />
 //       </div>
