@@ -18,6 +18,9 @@ const Navbar = () => {
       <ul>
         {isLoggedIn && (
           <>
+             <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
             <li>
               <Link to="/goalform">Nueva Meta</Link>
             </li>

@@ -1,16 +1,21 @@
 .form-container {
-    max-width: 500px; 
-    margin: auto;
-    padding: 40px; 
-    background-color: #333;
-    border-radius: 10px; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  }
-  
+  max-width: 500px;
+  margin: auto;
+  padding: 40px;
+  background-color: #333;
+  border-radius: 10px;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+  cursor: pointer;
+}
+
   .form-input {
     width: 100%;
     padding: 10px;
@@ -43,8 +48,29 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    margin:5px;
+  }
+  .close-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffd700;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin:5px;
+
   }
   
+  .button-container {
+    /* Añadimos un contenedor para alinear los botones horizontalmente */
+    display: flex;
+    justify-content: space-between;
+  }
   .form-button:hover {
     background-color: #ffcc00;
   }

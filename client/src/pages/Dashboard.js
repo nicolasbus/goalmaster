@@ -2,6 +2,7 @@ import React from 'react';
 import ToDoList from '../components/ToDoList';
 import '../styles/Dashboard.css'
 import UserGoals from '../components/UserGoals';
+import Goals from '../components/Goals';
 
 const Dashboard = ({ token }) => {
   return (
@@ -18,8 +19,11 @@ const Dashboard = ({ token }) => {
       <div className="container-top">
       </div>
       <div className="container-bottom">
-      <div class="content">
+      {/* <div class="content">
       <UserGoals token={token} />
+      </div> */}
+      <div class="content">
+      <Goals token={token} />
       </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/GoalForm.css';
 
-function GoalForm({ addGoal, token }) {
+function GoalForm({ addGoal, token, onClose  }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
@@ -40,7 +40,8 @@ function GoalForm({ addGoal, token }) {
   
   
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <div className="form-container" >
+    <form  onSubmit={handleSubmit}>
       <input
         className="form-input"
         type="text"
@@ -71,9 +72,15 @@ function GoalForm({ addGoal, token }) {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       ></textarea>
+        <div className="button-container">
 
       <button className="form-button" type="submit">Agregar Meta</button>
+      <button className="close-button" onClick={onClose}>
+      Cerrar
+    </button>
+    </div>
     </form>
+    </div>
   );
 }
 

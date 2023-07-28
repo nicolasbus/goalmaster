@@ -1,0 +1,10 @@
+.title-container {
+    display: flex; /* Alineamos los elementos horizontalmente */
+    align-items: center; /* Centramos verticalmente los elementos */
+    justify-content: space-between; /* Espacio entre los elementos */
+  }
+
+  .form-button {
+    /* Resto del CSS... */
+    width: 30vh;
+  }
