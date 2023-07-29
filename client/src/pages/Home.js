@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'; 
+import React from 'react'; 
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import TipsSlider from '../components/TipsSlider';
 
 const Home = () => {
   const isLoggedIn = !!localStorage.getItem('token');
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const tips = [
     'Establece metas realistas y alcanzables',
@@ -15,15 +15,6 @@ const Home = () => {
     '"No importa lo lento que vayas, siempre y cuando no te detengas." - Confucio',
     '"La motivación nos impulsa a comenzar y el hábito nos permite continuar." - Jim Ryun'
   ];
-
-  const nextTip = () => {
-    setCurrentIndex((currentIndex) => (currentIndex + 1) % tips.length);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(nextTip, 5000); 
-    return () => clearInterval(interval);
-  }, []); 
 
   return (
     <div className="home-container">
@@ -65,7 +56,8 @@ const Home = () => {
 
       <div className="slider">
         <div className="slider-content">
-          <p>{tips[currentIndex]}</p>
+          <TipsSlider tips={tips} />
+
         </div>
       </div>
 

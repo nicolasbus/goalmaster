@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import '../styles/GoalEditForm.css';
 
-function GoalEditForm({ goal, updateGoal, cancelEdit }) {
-  const [updatedGoal, setUpdatedGoal] = useState(goal);
+function ItemEditForm({ item, onUpdateItem, onCancelEdit }) {
+  const [updatedItem, setUpdatedItem] = useState(item);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'deadline') {
       const dateOnly = value.split('T')[0];
-      setUpdatedGoal((prevGoal) => ({ ...prevGoal, [name]: dateOnly }));
+      setUpdatedItem((prevItem) => ({ ...prevItem, [name]: dateOnly }));
     } else {
-      setUpdatedGoal((prevGoal) => ({ ...prevGoal, [name]: value }));
+      setUpdatedItem((prevItem) => ({ ...prevItem, [name]: value }));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateGoal(updatedGoal);
+    onUpdateItem(updatedItem);
   };
 
   return (
@@ -26,27 +26,27 @@ function GoalEditForm({ goal, updateGoal, cancelEdit }) {
         <input
           type="text"
           name="title"
-          value={updatedGoal.title}
+          value={updatedItem.title}
           onChange={handleInputChange}
         />
         <textarea
           name="description"
-          value={updatedGoal.description}
+          value={updatedItem.description}
           onChange={handleInputChange}
         ></textarea>
         <input
           type="date"
           name="deadline"
-          value={updatedGoal.deadline}
+          value={updatedItem.deadline}
           onChange={handleInputChange}
         />
         <div className="button-container">
-        <button type="submit">Guardar</button>
-        <button onClick={cancelEdit}>Cancelar</button>
-        </div> 
+          <button type="submit">Guardar</button>
+          <button onClick={onCancelEdit}>Cancelar</button>
+        </div>
       </form>
     </div>
   );
 }
 
-export default GoalEditForm;
+export default ItemEditForm;

@@ -2,6 +2,7 @@
   display: flex;
   height: 100vh; 
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .container-left {
@@ -12,20 +13,40 @@
 
 .container-left .container-top {
   flex: 30; 
-  /* background-color: blue;  */
   max-height: 30vh; 
-}
+  height: 100px; 
 
+}
+.tips-slider {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 2vh;
+  margin:0px;
+  bottom:20vh
+}
 .container-left .container-bottom {
   flex: 70; 
-  max-height: 70vh; 
+  max-height: 60vh; 
 }
 
 .todolist-container{
   position: relative;
-  bottom:10vh;
-}
+  bottom:25vh;
 
+}
+.todolist-title {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 4vh;
+  margin-top: 0;
+  margin-bottom: 10px;
+  top: 10vh;
+  transform: translateY(-50%); /* Centramos verticalmente usando transformaciones */
+  font-weight: bold;
+
+}
 
 .container-right {
   flex: 1; 
@@ -53,6 +74,6 @@
 .content {
   position:relative;
   bottom: 80px;
-  zoom: 80%; /* Aplicar zoom del 80% */
+  zoom: 80%; 
 
 }

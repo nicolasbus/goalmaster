@@ -4,8 +4,8 @@ const client = new DynamoDBClient({ region: config.awsRegion });
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken'); 
 
-exports.addGoal = async (req, res) => {
-  const { title, description, deadline, completed } = req.body;
+exports.addNotebook = async (req, res) => {
+  const { title, description, date, completed } = req.body;
   const authorizationHeader = req.header('Authorization');
 
   if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
@@ -20,12 +20,12 @@ exports.addGoal = async (req, res) => {
   console.log('idToken:', idToken);
 
   const params = {
-    TableName: config.dynamoDBTableName,
+    TableName: config.dynamoDBTableName3,
     Item: {
       id: { S: uuidv4() }, 
       title: { S: title },
       description: { S: description },
-      deadline: { S: deadline },
+      date: { S: date },
       completed: { BOOL: completed },
       userId: { S: userId },
     },
@@ -44,7 +44,7 @@ exports.addGoal = async (req, res) => {
 };
 
 
-exports.getGoals = async (req, res) => {
+exports.getNotebook = async (req, res) => {
   const authorizationHeader = req.header('Authorization');
 
   if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
@@ -53,11 +53,10 @@ exports.getGoals = async (req, res) => {
 
   const idToken = authorizationHeader.substring('Bearer '.length);
   const decodedToken = jwt.decode(idToken);
-  // const userId = decodedToken.sub;
   const userId = decodedToken && decodedToken.sub;
 
   const params = {
-    TableName: config.dynamoDBTableName,
+    TableName: config.dynamoDBTableName3,
     FilterExpression: '#userId = :userId',
     ExpressionAttributeNames: {
       '#userId': 'userId',
@@ -74,7 +73,7 @@ exports.getGoals = async (req, res) => {
       id: item.id.S,
       title: item.title.S,
       description: item.description.S,
-      deadline: item.deadline.S,
+      date: item.date.S,
       completed: item.completed.BOOL,
     }));
     res.status(200).json(goals);
@@ -84,11 +83,11 @@ exports.getGoals = async (req, res) => {
   }
 };
 
-exports.deleteGoal = async (req, res) => {
+exports.deleteNotebook = async (req, res) => {
   const { id } = req.params;
 
   const params = {
-    TableName: config.dynamoDBTableName,
+    TableName: config.dynamoDBTableName3,
     Key: {
       id: { S: id },
     },
@@ -104,12 +103,12 @@ exports.deleteGoal = async (req, res) => {
   }
 };
 
-exports.markGoalAsCompleted = async (req, res) => {
+exports.markNotebookAsCompleted = async (req, res) => {
   const { id } = req.params;
   const { completed } = req.body;
 
   const params = {
-    TableName: config.dynamoDBTableName,
+    TableName: config.dynamoDBTableName3,
     Key: {
       id: { S: id },
     },
@@ -134,15 +133,15 @@ exports.editGoal = async (req, res) => {
   const { title, description, deadline, } = req.body;
 
   const params = {
-    TableName: config.dynamoDBTableName,
+    TableName: config.dynamoDBTableName3,
     Key: {
       id: { S: id },
     },
-    UpdateExpression: 'SET title = :title, description = :description, deadline = :deadline',
+    UpdateExpression: 'SET title = :title, description = :description, date = :date',
     ExpressionAttributeValues: {
       ':title': { S: title },
       ':description': { S: description },
-      ':deadline': { S: deadline },
+      ':date': { S: date },
     },
   };
 

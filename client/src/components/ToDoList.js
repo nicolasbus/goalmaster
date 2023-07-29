@@ -88,7 +88,7 @@ const ToDoList = ({ token }) => {
       <form className="task-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="¿Qué tienes que hacer?"
+          placeholder="¿Qué tenés que hacer?"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />

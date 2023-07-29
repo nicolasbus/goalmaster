@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ItemEditForm from './ItemEditForm';
-import Item from './Item';
-import GoalForm from './GoalForm'; 
+import ItemEditForm from './ItemEditForm'; 
+import NotesForm from './NotesForm';
 import '../styles/Goals.css';
+import Item from './Item';
 
-const Goals = ({ token }) => {
-  const [goals, setGoals] = useState([]);
+const Notes = ({ token }) => {
+  const [notes, setNotes] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
-  const [showGoalForm, setShowGoalForm] = useState(false); 
+  const [showNoteForm, setShowNoteForm] = useState(false); 
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/goals', {
+      const response = await axios.get('http://localhost:3000/api/notebook', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const goalsData = response.data;
-      const sortedGoals = goalsData.sort((a, b) => {
-        const dateA = new Date(a.deadline);
-        const dateB = new Date(b.deadline);
+      const notesData = response.data;
+      const sortedNotes = notesData.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
         return dateA - dateB;
       });
       console.log(response.data);
-      setGoals(sortedGoals);
+      setNotes(sortedNotes);
     } catch (error) {
       console.error('Error al obtener las metas:', error);
     }
@@ -32,9 +32,9 @@ const Goals = ({ token }) => {
     fetchData();
   }, [token]);
 
-  const deleteGoal = async (id) => {
+  const deleteNote = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/goals/${id}`);
+      await axios.delete(`http://localhost:3000/api/notebook/${id}`);
       console.log('Meta eliminada:', id);
       fetchData();
     } catch (error) {
@@ -42,18 +42,18 @@ const Goals = ({ token }) => {
     }
   };
 
-  const editItem = (goal) => {
-    setEditingItem(goal);
+  const editNote = (note) => {
+    setEditingItem(note);
   };
 
   const updateItem = async (updatedItem) => {
     try {
-      await axios.put(`http://localhost:3000/api/goals/${updatedItem.id}`, updatedItem);
-      console.log('Meta actualizada:', updatedItem);
+      await axios.put(`http://localhost:3000/api/notebook/${updatedItem.id}`, updatedItem);
+      console.log('Nota actualizada:', updatedItem);
       fetchData();
       setEditingItem(null);
     } catch (error) {
-      console.error('Error al actualizar el elemento:', error);
+      console.error('Error al actualizar la nota:', error);
     }
   };
 
@@ -61,19 +61,20 @@ const Goals = ({ token }) => {
     setEditingItem(null);
   };
 
+
   const markGoalAsCompleted = async (id, newCompletedValue) => {
     try {
       await axios.put(`http://localhost:3000/api/goals/${id}/completed`, {
         completed: newCompletedValue,
       });
       console.log('Meta marcada como completada:', id);
-      const updatedGoals = goals.map((goal) => {
-        if (goal.id === id) {
-          return { ...goal, completed: newCompletedValue };
+      const updatedGoals = notes.map((note) => {
+        if (note.id === id) {
+          return { ...note, completed: newCompletedValue };
         }
-        return goal;
+        return note;
       });
-      setGoals(updatedGoals);
+      setNotes(updatedGoals);
     } catch (error) {
       console.error('Error al marcar la meta como completada:', error);
     }
@@ -86,34 +87,34 @@ const Goals = ({ token }) => {
     return dateObject.toLocaleDateString(undefined, options);
   };
   const handleGoalFormToggle = () => {
-    setShowGoalForm((prevState) => !prevState);
+    setShowNoteForm((prevState) => !prevState);
   };
   return (
     <div className="dashboard-container">
       <div className="goal-group">
       <div className="title-container">
-          <h2 className="title-h2">Mis Metas</h2>
+          <h2 className="title-h2">Agenda</h2>
           <button className="form-button" onClick={handleGoalFormToggle}>
-            Agregar Nueva Meta
+            Agregar Nota
           </button>
         </div>
         <ul className="goal-list">
-          {goals.map((goal) => (
+          {notes.map((note) => (
             <Item
-              key={goal.id}
-              item={goal}
+              key={note.id}
+              item={note}
               onToggleCompleted={markGoalAsCompleted}
-              onDelete={deleteGoal}
-              onEdit={editItem}
+              onDelete={deleteNote}
+              onEdit={editNote}
             />
           ))}
         </ul>
       </div>
-      {showGoalForm && ( 
+      {showNoteForm && ( 
         <div className="popup">
           <div className="popup-content">
-            <GoalForm addGoal={() => {}} token={token}  onClose={handleGoalFormToggle}/> 
-            <button className="form-button" onClick={() => setShowGoalForm(false)}>
+            <NotesForm addNote={() => {}} token={token}  onClose={handleGoalFormToggle}/> 
+            <button className="form-button" onClick={() => setShowNoteForm(false)}>
               Cerrar
             </button>
           </div>
@@ -131,4 +132,4 @@ const Goals = ({ token }) => {
   );
 };
 
-export default Goals;
+export default Notes

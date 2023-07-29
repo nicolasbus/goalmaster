@@ -8,25 +8,25 @@ const formatDate = (date) => {
   return dateObject.toLocaleDateString(undefined, options);
 };
 
-const GoalItem = ({ goal, markAsCompleted, deleteGoal, editGoal }) => {
-  const { title, description, deadline, completed } = goal;
+const Item = ({ item, onToggleCompleted, onDelete, onEdit }) => {
+  const { title, description, date, completed } = item;
 
   return (
     <li className={completed ? 'goal-item completed' : 'goal-item'}>
-      <div className="circle" onClick={() => markAsCompleted(goal.id, !completed)}>
+      <div className="circle" onClick={() => onToggleCompleted(date.id, !completed)}>
 
         {completed && <span className="checkmark">&#10003;</span>}
       </div>
       <div className="goal-details">
         <h3>{title}</h3>
         <p>{description}</p>
-        <p>Fecha límite: {formatDate(deadline)}</p>
+        <p>Fecha límite: {formatDate(date)}</p>
       </div>
             <div className="buttons-container">
-        <button className="edit-button" onClick={() => editGoal(goal)}>
+        <button className="edit-button" onClick={() => onEdit(item)}>
           Editar
         </button>
-        <button className="delete-button" onClick={() => deleteGoal(goal.id)}>
+        <button className="delete-button" onClick={() => onDelete(item.id)}>
           &#10006;
         </button>
       </div>
@@ -34,4 +34,4 @@ const GoalItem = ({ goal, markAsCompleted, deleteGoal, editGoal }) => {
   );
 };
 
-export default GoalItem;
+export default Item;
