@@ -1,9 +1,9 @@
 import React from 'react';
 import ToDoList from '../components/ToDoList';
 import '../styles/Dashboard.css'
-import UserGoals from '../components/UserGoals';
 import Goals from '../components/Goals';
-
+import GoalCalendar from '../components/GoalCalendar';
+ 
 const Dashboard = ({ token }) => {
   return (
     <div className="container-wrapper">
@@ -17,11 +17,10 @@ const Dashboard = ({ token }) => {
     </div>
     <div className="container-right">
       <div className="container-top">
+      <GoalCalendar token={token} />
       </div>
       <div className="container-bottom">
-      {/* <div class="content">
-      <UserGoals token={token} />
-      </div> */}
+
       <div class="content">
       <Goals token={token} />
       </div>

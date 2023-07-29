@@ -35,8 +35,10 @@
 
 .container-right .container-top {
   flex: 50; 
-  /* background-color: green;  */
   max-height: 50vh; 
+  position:relative;
+  top:15vh;
+  left:  30vh ;
 
 }
 

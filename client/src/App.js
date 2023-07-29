@@ -7,7 +7,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import GoalForm from './components/GoalForm';
 import React, { useState, useEffect } from 'react';
-import UserGoals from './components/UserGoals';
 import Dashboard from './pages/Dashboard';
 import ToDoList from './components/ToDoList';
 import Goals from './components/Goals';
@@ -32,7 +31,6 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/autenticacion" element={<ConfirmCode />} />
         <Route path="/goalform" element={token ? <GoalForm token={token} /> : <p>Cargando...</p>}/>
-        <Route path="/usergoals" element={token ? <UserGoals token={token} /> : <p>Cargando...</p>}/>
         {/* <Route path="/home" element={<ProtectedRoute element={Home} token={token} />} /> */}
         <Route path="/dashboard" element={token ? <Dashboard token={token} /> : <p>Cargando...</p>}/>"
         <Route path="/goals" element={token ? <Goals token={token} /> : <p>Cargando...</p>}/>"

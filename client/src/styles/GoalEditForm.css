@@ -1,10 +1,15 @@
+/* GoalEditForm.css */
 .edit-form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f2f2f2; 
-  border-radius: 8px;
-  color: black
+  max-width: 500px;
+  margin: auto;
+  padding: 40px;
+  background-color: #333;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .edit-form input,
@@ -14,8 +19,12 @@
   margin-bottom: 15px;
   border: none;
   border-radius: 4px;
-  background-color: #fff; 
-  color: #444;
+  background-color: #fff;
+  color: #000;
+}
+
+.edit-form textarea {
+  height: 100px; /* Adjust the height as needed */
 }
 
 .edit-form button {
@@ -25,20 +34,41 @@
   margin-top: 10px;
   border: none;
   border-radius: 4px;
-  background-color: #444;
-  color: #fff; 
+  background-color: #ffd700;
+  color: #000;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  margin: 5px;
 }
 
 .edit-form button:hover {
-  background-color: #ffcc00; 
+  background-color: #ffcc00;
 }
 
+.edit-form .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+/* Mobile styles */
 @media screen and (max-width: 480px) {
   .edit-form {
-    max-width: 100%;
+    max-width: 90%;
     padding: 10px;
   }
-} 
+
+  .edit-form input,
+  .edit-form textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .edit-form button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

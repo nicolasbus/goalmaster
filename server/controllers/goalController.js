@@ -26,7 +26,6 @@ exports.addGoal = async (req, res) => {
       title: { S: title },
       description: { S: description },
       deadline: { S: deadline },
-      priority: { S: priority },
       completed: { BOOL: completed },
       userId: { S: userId },
     },
@@ -76,7 +75,6 @@ exports.getGoals = async (req, res) => {
       title: item.title.S,
       description: item.description.S,
       deadline: item.deadline.S,
-      priority: item.priority.S,
       completed: item.completed.BOOL,
     }));
     res.status(200).json(goals);
@@ -133,7 +131,7 @@ exports.markGoalAsCompleted = async (req, res) => {
 
 exports.editGoal = async (req, res) => {
   const { id } = req.params;
-  const { title, description, deadline, priority } = req.body;
+  const { title, description, deadline, } = req.body;
 
   const params = {
     TableName: config.dynamoDBTableName,
@@ -145,7 +143,6 @@ exports.editGoal = async (req, res) => {
       ':title': { S: title },
       ':description': { S: description },
       ':deadline': { S: deadline },
-      ':priority': { S: priority },
     },
   };
 

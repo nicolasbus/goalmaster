@@ -40,9 +40,10 @@ function GoalEditForm({ goal, updateGoal, cancelEdit }) {
           value={updatedGoal.deadline}
           onChange={handleInputChange}
         />
-
+        <div className="button-container">
         <button type="submit">Guardar</button>
         <button onClick={cancelEdit}>Cancelar</button>
+        </div> 
       </form>
     </div>
   );

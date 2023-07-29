@@ -6,7 +6,8 @@
   }
   
   .goal-item.completed {
-    background-color: gold;
+    background-color: rgb(253, 229, 91);
+    color:black
   }
   
   .circle {
@@ -30,8 +31,7 @@
   }
   
   .delete-button {
-    background-color: #f44336;
-    color: #fff;
+    color: grey;
     border: none;
     border-radius: 50%;
     width: 30px;

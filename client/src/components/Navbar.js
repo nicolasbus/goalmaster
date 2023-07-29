@@ -22,10 +22,7 @@ const Navbar = () => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link to="/goalform">Nueva Meta</Link>
-            </li>
-            <li>
-              <Link to="/usergoals">Mis Metas</Link>
+              <Link to="/goals">Mis Metas</Link>
             </li>
           </>
         )}

@@ -36,8 +36,8 @@ const Home = () => {
       <div className="cta-buttons">
         {isLoggedIn ? (
           <div className="button-wrapper">
-           <Link to="/goalform">
-            <button className="login-button">Nueva Meta</button>
+           <Link to="/dashboard">
+            <button className="login-button">Dashboard</button>
            </Link>
           </div>
         ) : (
@@ -50,7 +50,7 @@ const Home = () => {
 
         {isLoggedIn ? (
           <div className="button-wrapper">
-           <Link to="/usergoals">
+           <Link to="/goals">
             <button className="register-button">Ver Metas</button>
            </Link>
           </div>

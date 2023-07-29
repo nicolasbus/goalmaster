@@ -15,7 +15,10 @@
 .close-button {
   cursor: pointer;
 }
-
+.p-deadline{
+  margin-top: 0px;
+  padding:0px;
+}
   .form-input {
     width: 100%;
     padding: 10px;
@@ -67,7 +70,6 @@
   }
   
   .button-container {
-    /* Añadimos un contenedor para alinear los botones horizontalmente */
     display: flex;
     justify-content: space-between;
   }

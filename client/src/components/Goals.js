@@ -4,7 +4,6 @@ import GoalEditForm from './GoalEditForm';
 import GoalItem from './GoalItem';
 import GoalForm from './GoalForm'; // Importamos el componente GoalForm
 import '../styles/Goals.css';
-
 const Goals = ({ token }) => {
   const [goals, setGoals] = useState([]);
   const [editingGoal, setEditingGoal] = useState(null);
@@ -126,6 +125,7 @@ const Goals = ({ token }) => {
           </div>
         </div>
       )}
+
     </div>
   );
 };
