@@ -1,10 +1,10 @@
 import React from 'react';
 import ToDoList from '../components/ToDoList';
-import '../styles/Dashboard.css'
 import Goals from '../components/Goals';
 import GoalCalendar from '../components/GoalCalendar';
 import TipsSlider from '../components/TipsSlider';
 import Notes from '../components/Notes';
+import '../styles/Dashboard.css'
 
 const Dashboard = ({ token }) => {
   const tips = [
@@ -29,6 +29,7 @@ const Dashboard = ({ token }) => {
       <div className="tips-slider">
       <TipsSlider  tips={tips}/>
       </div>
+
       <div className="container-bottom">
         <div className="todolist-container">
         <p className="todolist-title">Planifica tu dia</p>  
@@ -37,15 +38,20 @@ const Dashboard = ({ token }) => {
       </div>
     </div>
     <div className="container-right">
-      <div className="container-top">
-      <GoalCalendar token={token} />
-      </div>
-      <div className="container-bottom">
 
-      <div className="content">
-      {/* <Goals token={token} /> */}
-      <Notes token={token} />
+      <div className="container-top2">
+        <div className="notes-container">
+          <Notes token={token} />
+        </div>
+        <div className="calendar-container">
+          <GoalCalendar className="calendar" token={token} />
+        </div>
+
       </div>
+      <div className="container-bottom2">
+        <div className="content">
+          <Goals token={token} />
+       </div>
       </div>
     </div>
   </div>

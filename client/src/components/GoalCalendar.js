@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import { isSameDay } from 'date-fns';
+import { es } from 'date-fns/locale'; 
 
 const GoalCalendar = ({ token }) => {
   const [goals, setGoals] = useState([]);
@@ -63,6 +64,7 @@ const GoalCalendar = ({ token }) => {
   return (
     <div style={{ maxWidth: '400px', margin: '0 auto' }}>
       <Calendar
+              locale={es} 
         tileContent={({ date }) => {
           const event = allEvents.find((event) => isSameDay(event.date, date));
           if (event) {

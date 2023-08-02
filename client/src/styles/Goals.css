@@ -1,10 +1,7 @@
 .goal-group {
   flex: 1;
-  margin: 10px;
   padding: 20px;
   background-color: black;
-  border-radius: 8px;
-  margin: 50px auto 0; 
   color: #fff; 
 
 }
@@ -46,7 +43,6 @@
 
 .goal-group .buttons-container {
   display: flex;
-  margin-top: 10px;
   justify-content: space-between; 
 
 }
@@ -70,7 +66,6 @@
   background-color: rgb(252, 234, 134) !important;
   color: black; 
 }
-/* Estilos para el popup */
 .popup {
   position: fixed;
   top: 0;
@@ -94,13 +89,12 @@
 
 
 .title-container {
-    display: flex; /* Alineamos los elementos horizontalmente */
-    align-items: center; /* Centramos verticalmente los elementos */
-    justify-content: space-between; /* Espacio entre los elementos */
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
   }
 
   .form-button {
-    /* Resto del CSS... */
     width: 30vh;
   }
   @media screen and (max-width: 1200px) {
