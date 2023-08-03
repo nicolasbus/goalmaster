@@ -5,17 +5,21 @@ import '../styles/GoalForm.css';
 function GoalForm({ addGoal, token, onClose  }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [deadline, setDeadline] = useState('');
+  // const [deadline, setDeadline] = useState('');
+  const [date, setDate] = useState('');
 
   console.log('Token recibido en GoalForm:', token); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title && description && deadline) {
+    // if (title && description && deadline) {
+      if (title && description && date) {
+
       const newGoal = {
         title,
         description,
-        deadline,
+        // deadline,
+        date,
         completed: false,
       };
   
@@ -28,7 +32,9 @@ function GoalForm({ addGoal, token, onClose  }) {
   
         setTitle('');
         setDescription('');
-        setDeadline('');
+        // setDeadline('');
+        setDate('');
+
       } catch (error) {
         console.error('Error al enviar la meta al backend:', error);
       }
@@ -52,8 +58,10 @@ function GoalForm({ addGoal, token, onClose  }) {
         className="form-input"
         type="date"
         placeholder="Fecha límite"
-        value={deadline}
-        onChange={(e) => setDeadline(e.target.value)}
+        // value={deadline}
+        // onChange={(e) => setDeadline(e.target.value)}
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
       />
 
      <p className='p-deadline'>Descripcion</p>

@@ -1,11 +1,11 @@
-const { DynamoDBClient, PutItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBClient, PutItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand, QueryCommand } = require('@aws-sdk/client-dynamodb');
 const config = require('../config');
 const client = new DynamoDBClient({ region: config.awsRegion });
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken'); 
 
 exports.addGoal = async (req, res) => {
-  const { title, description, deadline, completed } = req.body;
+  const { title, description, date, completed } = req.body;
   const authorizationHeader = req.header('Authorization');
 
   if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
@@ -25,7 +25,7 @@ exports.addGoal = async (req, res) => {
       id: { S: uuidv4() }, 
       title: { S: title },
       description: { S: description },
-      deadline: { S: deadline },
+      date: { S: date },
       completed: { BOOL: completed },
       userId: { S: userId },
     },
@@ -43,7 +43,48 @@ exports.addGoal = async (req, res) => {
   }
 };
 
+//GET CON SCAN - MENOS EFICIENTE
+// exports.getGoals = async (req, res) => {
+//   const authorizationHeader = req.header('Authorization');
 
+//   if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+//     return res.status(401).json({ error: 'No se proporcionó un token de autorización válido.' });
+//   }
+
+//   const idToken = authorizationHeader.substring('Bearer '.length);
+//   const decodedToken = jwt.decode(idToken);
+//   const userId = decodedToken && decodedToken.sub;
+
+//   const params = {
+//     TableName: config.dynamoDBTableName,
+//     FilterExpression: '#userId = :userId',
+//     ExpressionAttributeNames: {
+//       '#userId': 'userId',
+//     },
+//     ExpressionAttributeValues: {
+//       ':userId': { S: userId },
+//     },
+//   };
+//   console.log('Params:', params);
+
+//   try {
+//     const data = await client.send(new ScanCommand(params));
+//     const goals = data.Items.map((item) => ({
+//       id: item.id.S,
+//       title: item.title.S,
+//       description: item.description.S,
+//       // deadline: item.deadline.S,
+//       date: item.date.S,
+//       completed: item.completed.BOOL,
+//     }));
+//     res.status(200).json(goals);
+//   } catch (error) {
+//     console.error('Error al obtener las metas:', error);
+//     res.status(500).json({ error: 'Error al obtener las metas' });
+//   }
+// };
+
+//GET CON QUERY - MAS EFICIENTE
 exports.getGoals = async (req, res) => {
   const authorizationHeader = req.header('Authorization');
 
@@ -53,12 +94,11 @@ exports.getGoals = async (req, res) => {
 
   const idToken = authorizationHeader.substring('Bearer '.length);
   const decodedToken = jwt.decode(idToken);
-  // const userId = decodedToken.sub;
   const userId = decodedToken && decodedToken.sub;
 
   const params = {
     TableName: config.dynamoDBTableName,
-    FilterExpression: '#userId = :userId',
+    KeyConditionExpression: '#userId = :userId',
     ExpressionAttributeNames: {
       '#userId': 'userId',
     },
@@ -69,12 +109,12 @@ exports.getGoals = async (req, res) => {
   console.log('Params:', params);
 
   try {
-    const data = await client.send(new ScanCommand(params));
+    const data = await client.send(new QueryCommand(params));
     const goals = data.Items.map((item) => ({
       id: item.id.S,
       title: item.title.S,
       description: item.description.S,
-      deadline: item.deadline.S,
+      date: item.date.S,
       completed: item.completed.BOOL,
     }));
     res.status(200).json(goals);
@@ -131,7 +171,7 @@ exports.markGoalAsCompleted = async (req, res) => {
 
 exports.editGoal = async (req, res) => {
   const { id } = req.params;
-  const { title, description, deadline, } = req.body;
+  const { title, description, date, } = req.body;
 
   const params = {
     TableName: config.dynamoDBTableName,
@@ -142,7 +182,7 @@ exports.editGoal = async (req, res) => {
     ExpressionAttributeValues: {
       ':title': { S: title },
       ':description': { S: description },
-      ':deadline': { S: deadline },
+      ':date': { S: date },
     },
   };
 

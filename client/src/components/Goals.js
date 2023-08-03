@@ -17,8 +17,10 @@ const Goals = ({ token }) => {
       });
       const goalsData = response.data;
       const sortedGoals = goalsData.sort((a, b) => {
-        const dateA = new Date(a.deadline);
-        const dateB = new Date(b.deadline);
+        // const dateA = new Date(a.deadline);
+        // const dateB = new Date(b.deadline);
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
         return dateA - dateB;
       });
       console.log(response.data);

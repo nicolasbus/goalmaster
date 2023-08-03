@@ -20,8 +20,8 @@ const GoalCalendar = ({ token }) => {
       });
       const goalsData = goalsResponse.data;
       const sortedGoals = goalsData.sort((a, b) => {
-        const dateA = new Date(a.deadline);
-        const dateB = new Date(b.deadline);
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
         return dateA - dateB;
       });
       setGoals(sortedGoals);
@@ -43,7 +43,7 @@ const GoalCalendar = ({ token }) => {
 
 
   const goalEvents = goals.map((goal) => {
-    const date = new Date(goal.deadline);
+    const date = new Date(goal.date);
     date.setDate(date.getDate() + 1);
     return {
       title: goal.title, 
@@ -62,7 +62,7 @@ const GoalCalendar = ({ token }) => {
   const allEvents = [...goalEvents, ...noteEvents]; 
 
   return (
-    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+    <div style={{ width: '100%', height: '100%', margin: '0 auto' }}>
       <Calendar
               locale={es} 
         tileContent={({ date }) => {
